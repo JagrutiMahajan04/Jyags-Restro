@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import User from "./models/User.js";
+import FoodItem from "./models/FoodItem.js";
 
 const app = express();
 app.use(express.json());
@@ -112,6 +113,58 @@ app.post('/login', async (req, res)=> {
         })
     }
 })
+
+app.post('/createfoodItem', async(req,res)=>{
+    const {title, description, imgUrl, price, category} = req.body;
+
+    const foodItemSchema = new Schema({
+        title: title,
+        description:description,
+        imgUrl: imgUrl,
+        price:price,
+        category:category
+    })
+
+    const savedFoodItem = await foodItemSchema.save();
+
+    res.json({
+        success: true,
+        message: "Food Item created successfully",
+        data: savedFoodItem
+    })
+})
+
+//http://localhost:5000/foodItemByCategory?category=pizza
+app.get("/foodItemsByCategory", async(req, res)=>{
+    const {category} = req.query;
+
+    const foodItems = await FoodItem.find({
+        category: category
+    })
+
+    res.json({
+        success: true,
+        message:"Food Items fetched successfully",
+        data: foodItems
+    })
+})
+
+//http://localhost:5000/foodItems?title=pizza
+app.get("/foodItems", async(req, res)=>{
+    const {title} = req.query;
+
+    const foodItems = await FoodItem.find({
+        title: {$regex: title, $options: 'i'}
+    })
+
+    res.json({
+        success: true,
+        message:"Food Items fetched successfully",
+        data: foodItems
+    })
+})
+
+
 
 //api routes ends here
 
