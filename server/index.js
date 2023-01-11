@@ -6,6 +6,7 @@ dotenv.config();
 import User from "./models/User.js";
 import FoodItem from "./models/FoodItem.js";
 import Table from "./models/Table.js";
+import Order from "./models/Order.js"
 
 const app = express();
 app.use(express.json());
@@ -234,6 +235,60 @@ app.get("/availableTables", async (req, res)=> {
     })
 })
 
+app.post("/orderFoodItems", async(req,res )=>{
+    const {userId, tableNumber, items} = req.body
+     
+    // generate 5 digit unique order id with currrent hours and minutes
+    //const orderId ="ord" + new Date().getHours() + "" + new Date.getMinutes() + "" + Math.floor(100 + Math.random() * 900);
+
+    // count total orders
+
+    const totalOrders = await Order.countDocuments();
+     
+    const orderId = totalOrders + 1;
+
+    const order = new Order({
+        orderId: orderId,
+        userId: userId,
+        tableNumber: tableNumber,
+        items:items
+    })
+
+    const savedOrder = await order.save();
+
+    res.json({
+        success: true,
+        message: "Order placed successfully",
+        data: savedOrder
+    })
+
+
+})
+
+app.get("/order", async(req, res)=>{
+    const {orderId} = req.query;
+
+    const order = await Order.findOne({orderId: orderId});
+
+    res.json({
+        success: true,
+        message: "Order fetched succcessfully",
+        data: order
+    })
+})
+
+
+app.get("/ordersByUserId", async(req, res)=>{
+    const {userId} = req.query;
+
+    const orders = await Order.find({userId: userId});
+
+    res.json({
+        success: true,
+        message: "Orders fetched succcessfully",
+        data:orders
+    })
+})
 
 
 //api routes ends here
