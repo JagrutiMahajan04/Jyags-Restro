@@ -1,0 +1,31 @@
+.form-container{
+    background-color: rgb(4, 255, 255);
+    width: 400px;
+    padding: 20px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 1px 1px 1px 1px rgb(95, 124, 251);
+
+}
+
+.user-input{
+    display: block;
+    width: 300px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 25px;
+    padding-left: 10px;
+}
+
+.signup-button{
+    font-size: 25px;
+    background-color: rgb(8, 16, 239);
+    color: rgb(228, 229, 251);
+    margin: 10px;
+    border-radius: 8px;
+    border: 1px solid rgb(254, 251, 251);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+}
