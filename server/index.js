@@ -248,7 +248,7 @@ app.post("/orderFoodItems", async(req,res )=>{
     const orderId = totalOrders + 1;
 
     const order = new Order({
-        orderId: orderId,
+        orderId: orderId, 
         userId: userId,
         tableNumber: tableNumber,
         items:items
