@@ -1,4 +1,5 @@
 import React, {useState,useEffect} from "react";
+import { currentUser } from "../../util/CurrentUser";
 import axios from 'axios'
 import "./Signup.css"
 
@@ -11,9 +12,7 @@ function Signup() {
 
 
     useEffect(() => {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'))
         if(currentUser){
-         alert('User is already logged in')
          window.location.href="/"
         }
     }, [])

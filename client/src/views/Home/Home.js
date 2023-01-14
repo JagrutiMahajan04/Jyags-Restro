@@ -1,13 +1,12 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
+import { currentUser } from "../../util/CurrentUser";
 
 function Home(){
-    useEffect(() => {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-        console.log(currentUser)
-    }, [])
+
     return (
         <div>
            <h1 className="text-center">Home</h1>
+           <h2>{currentUser?.name}</h2>
         </div>
     )
 }
