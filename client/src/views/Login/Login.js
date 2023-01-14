@@ -1,10 +1,18 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import axios from 'axios'
 import "./Login.css"
 
 function Login() {
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
+
+    useEffect(() => {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+        if(currentUser){
+         alert('User is already logged in')
+         window.location.href="/"
+        }
+    }, [])
 
    async function loginUser() {
     const response = await axios.post('/login', {
