@@ -142,6 +142,21 @@ app.get("/foodItemsByCategory", async(req, res)=>{
     })
 })
 
+//http://localhost:5000/allfoodItems
+
+app.get("/allfoodItems", async(req, res)=>{
+
+    const foodItems = await FoodItem.find()
+      
+      res.json({
+        success: true,
+        message:"Food Items fetched successfully",
+        data: foodItems
+      })
+})
+
+
+
 //http://localhost:5000/foodItems?title=pizza
 app.get("/foodItems", async(req, res)=>{
     const {title} = req.query;

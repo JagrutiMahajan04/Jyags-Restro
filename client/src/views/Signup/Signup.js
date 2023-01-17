@@ -42,7 +42,7 @@ function Signup() {
                 title: "Error",
                 text: response.data.message,
                 icon: "error",
-                button: "Try Again",
+                button: "Try Again!",
             });
             setName('')
             setEmail('')
