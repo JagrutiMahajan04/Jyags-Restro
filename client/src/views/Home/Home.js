@@ -57,7 +57,7 @@ function Home() {
                 <div class="row">
                     {
                         currentFoodItems?.map((foodItem, index) => {
-                            return (<FoodItemCard category={foodItem.category} title={foodItem.title} price={foodItem.price} imgUrl={foodItem.imgUrl} key={index} />
+                            return (<FoodItemCard description={foodItem.description} category={foodItem.category} title={foodItem.title} price={foodItem.price} imgUrl={foodItem.imgUrl} key={index} />
                             )
                         })
                     }

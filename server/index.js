@@ -155,8 +155,6 @@ app.get("/allfoodItems", async(req, res)=>{
       })
 })
 
-
-
 //http://localhost:5000/foodItems?title=pizza
 app.get("/foodItems", async(req, res)=>{
     const {title} = req.query;

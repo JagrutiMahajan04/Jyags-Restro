@@ -3,7 +3,7 @@
     border:1px solid #ccc;
     width:300px;
     border-radius: 5px;
-    box-shadow: 1px 1px 1px 1px rgb(0, 0, 0,1);
+    box-shadow: 0 0 10px #808080;
 }
 
 .food-item-card-header-img{
@@ -14,4 +14,43 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.btn-add-to-list{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6px;
+    color: white;
+    background-color: #820000;
+    font-size: 20px;
+    padding: 5px;
+    width: 180px;
+    border-radius: 30px;
+    border: 1px solid #fc5377;
+    box-shadow: 1px 1px 1px 1px #a17474;
+}
+
+.quantity-btn-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.qnt-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    background-color: #820000;
+    color: white;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.qnt-text{
+    font-size: 40px;
 }
