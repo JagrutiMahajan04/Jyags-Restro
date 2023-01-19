@@ -4,11 +4,13 @@ import "./Home.css";
 import FoodItemCard from "./../../components/FoodItemCard/FoodItemCard"
 
 import { currentUser } from "../../util/CurrentUser";
+import { loginRequired } from "../../util/loginRequired";
 
 function Home() {
 
     const [searchText, setSearchText] = useState('')
     const [currentFoodItems, setAllFoodItems] = useState([])
+    const [currentUserVar, setCurrentUserVar] = useState(currentUser)
 
 
     async function fetchAllItems() {
@@ -39,9 +41,12 @@ function Home() {
         window.location.href = "/login"
     }
 
-    if (!currentUser) {
-        window.location.href = "/login"
-    }
+    useEffect(()=>{
+        if(!currentUserVar){
+            loginRequired()
+        }
+    }, [currentUserVar])
+
     return (
         <div>
             <h1 className="text-center">Home</h1>
