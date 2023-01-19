@@ -10,7 +10,6 @@ function Home() {
 
     const [searchText, setSearchText] = useState('')
     const [currentFoodItems, setAllFoodItems] = useState([])
-    const [currentUserVar, setCurrentUserVar] = useState(currentUser)
 
 
     async function fetchAllItems() {
@@ -42,10 +41,8 @@ function Home() {
     }
 
     useEffect(()=>{
-        if(!currentUserVar){
             loginRequired()
-        }
-    }, [currentUserVar])
+    }, [])
 
     return (
         <div>
