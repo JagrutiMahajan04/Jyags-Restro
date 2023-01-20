@@ -7,6 +7,7 @@ import Login from "./views/Login/Login.js"
 import MyOrders from './views/MyOrders/MyOrders.js'
 import Signup from './views/Signup/Signup.js'
 import Profile from './views/Profile/Profile.js'
+import Navbar from './components/Navbar/Navbar.js'
 
 
 function App(){
@@ -20,6 +21,7 @@ function App(){
         <Route path="/booktable" element={<BookTable/>}/>
         <Route path="/myorders" element={<MyOrders/>}/>
         <Route path="/profile" element={<Profile/>}/>
+        <Route path="/navbar" element={<Navbar/>}/>
 
 
       </Routes>
