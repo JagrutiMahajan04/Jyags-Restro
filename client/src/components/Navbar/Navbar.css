@@ -1,0 +1,7 @@
+.my-list{
+    background-color: #FAECD6;
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -35,6 +35,8 @@ function Home() {
         }
     }, [searchText])
 
+    
+
 
     function logOut() {
         localStorage.removeItem('currentUser');
