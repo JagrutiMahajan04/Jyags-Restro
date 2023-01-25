@@ -8,6 +8,7 @@ import MyOrders from './views/MyOrders/MyOrders.js'
 import Signup from './views/Signup/Signup.js'
 import Profile from './views/Profile/Profile.js'
 import Navbar from './components/Navbar/Navbar.js'
+import MyList from './views/MyList/MyList'
 
 
 function App(){
@@ -19,9 +20,11 @@ function App(){
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/booktable" element={<BookTable/>}/>
+        <Route path="/myList" element={<MyList/>}/>
         <Route path="/myorders" element={<MyOrders/>}/>
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/navbar" element={<Navbar/>}/>
+
 
 
       </Routes>

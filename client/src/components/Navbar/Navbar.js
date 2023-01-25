@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import "./Navbar.css"
 import { myFoodListCount} from '../../util/myList'
+import {Link} from 'react-router-dom'
 
 function Navbar({ user }) {
   const [foodItemCount, setFoodItemCount] = useState(myFoodListCount)
@@ -20,7 +21,9 @@ function Navbar({ user }) {
             </ul>
             <form class="d-flex align-items-center">
               <h4 className='me-2 text-light'>Hello {user}</h4>
+              <Link to='/myList' className='text-decoration-none'>
               <h5 className='me-2 text-dark my-list'>🛒 {foodItemCount} </h5>
+              </Link>
             </form>
           </div>
         </div>
