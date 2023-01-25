@@ -1,14 +1,30 @@
 import React from 'react'
+import axios from 'axios'
+import swal from 'sweetalert'
 import './MyList.css'
 import Navbar from '../../components/Navbar/Navbar'
 
 import { myFoodListItems } from '../../util/myList'
+import {currentUser} from '../../util/CurrentUser'
 
 function MyList() {
+    async function placeFoodOrder(){
+       const response = await axios.post("/orderFoodItems", {
+        userId: currentUser._id,
+        tableNumber: localStorage.getItem("tableNumber") || 1,
+        items: myFoodListItems
+       })
+        if(response.data.success){
+            await swal("Order Placed", response.data.message, "success")
+            localStorage.removeItem("List")
+            window.location.href="/"
+        }
+    }
     return (
         <div>
             <Navbar/>
             <h1 className='text-center'>MyList</h1>
+            <div className='my-list-container'>
             {
                 myFoodListItems.map((item,index)=>{
                     return (
@@ -21,7 +37,8 @@ function MyList() {
                     )
                 })
             }
-            <button type='button' className=' btn btn-primary'>Confirm Order</button>
+            </div>
+            <button type='button' className='confirm-order-button' onClick={placeFoodOrder}>Confirm Order</button>
         </div>
     )
 }
