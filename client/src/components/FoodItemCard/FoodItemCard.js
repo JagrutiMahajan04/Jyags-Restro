@@ -2,6 +2,7 @@ import React,{useState} from "react";
 import "./FoodItemCard.css"
 import swal from "sweetalert";
 
+
  function FoodItemCard({category, description, imgUrl, price, title}) {
 
     const [quantity, setQuantity] = useState(1)
@@ -29,7 +30,7 @@ import swal from "sweetalert";
     }
 
     return (
-        <div className="col-md-3">
+        <div className="col-md-3 ">
             <div className="food-item-card">
                 <div>
                 <img src={imgUrl} class="food-item-card-header-img"/>

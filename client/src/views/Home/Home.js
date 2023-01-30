@@ -52,7 +52,7 @@ function Home() {
             <Navbar user={currentUser?.name}/>
 
             <div className="search-container">
-                <input type="text" placeholder="Search" className="input-search"
+                <input type="text" placeholder="Search Your Food Items" className="input-search"
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)} />
             </div>
@@ -69,7 +69,7 @@ function Home() {
 
             </div>
 
-            <button type="button" className="btn btn-primary" onClick={logOut}>Logout</button>
+            <button type="button" className="logOut-btn" onClick={logOut}>Logout</button>
         </div>
     )
 }

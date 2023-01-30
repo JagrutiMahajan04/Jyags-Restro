@@ -1,10 +1,10 @@
 import React from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import BookTable from './views/BookTable/BookTable.js'
 
 import Home from "./views/Home/Home.js"
 import Login from "./views/Login/Login.js"
 import MyOrders from './views/MyOrders/MyOrders.js'
+import Tables from './views/Tables/Tables.js'
 import Signup from './views/Signup/Signup.js'
 import Profile from './views/Profile/Profile.js'
 import Navbar from './components/Navbar/Navbar.js'
@@ -19,7 +19,7 @@ function App(){
         <Route path="/" element={<Home/>}/>       
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
-        <Route path="/booktable" element={<BookTable/>}/>
+        <Route path="/tables" element={<Tables/>}/>
         <Route path="/myList" element={<MyList/>}/>
         <Route path="/myorders" element={<MyOrders/>}/>
         <Route path="/profile" element={<Profile/>}/>
