@@ -7,9 +7,9 @@ function Navbar({ user }) {
   const [foodItemCount, setFoodItemCount] = useState(myFoodListCount)
   return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav class="navbar navbar-expand-lg navbar-dark ">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Jyags Restro</a>
+          <a class="navbar-brand" href="#"> 🍱Jyags Restro 🤤</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -20,7 +20,7 @@ function Navbar({ user }) {
               </li>
             </ul>
             <form class="d-flex align-items-center">
-              <h4 className='me-2 text-light'>Hello {user}</h4>
+              <h4 className='me-2 text-light'>Hello {user} 😋</h4>
               <Link to='/myList' className='text-decoration-none'>
               <h5 className='me-2 text-dark my-list'>🛒 {foodItemCount} </h5>
               </Link>

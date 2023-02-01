@@ -5,3 +5,8 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+.navbar{
+    background-image: linear-gradient(180deg,  #820000 80%, #4e6c50 90%);
+    
+}

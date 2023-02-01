@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import  swal from "sweetalert";
+import swal from "sweetalert";
 import "./Tables.css"
 import Navbar from "../../components/Navbar/Navbar";
 
@@ -10,12 +10,11 @@ import { currentUser } from "../../util/CurrentUser";
 function Tables() {
 
     const [availableTables, setAvailableTables] = useState([])
-     
-    useEffect(()=>{
+
+    useEffect(() => {
         async function fetchTables() {
             const response = await axios.get("/availableTables")
             console.log(response.data.data);
-            localStorage.setItem('table',JSON.stringify(response.data.data))
             setAvailableTables(response.data.data)
         }
         fetchTables()
@@ -25,54 +24,67 @@ function Tables() {
         loginRequired()
     }, [])
 
-    async function bookTable() {
+    async function bookTable(tableNumber) {
         console.log('Table Booked');
 
         const response = await axios.post('/bookTable', {
-            tableNumber: localStorage.getItem("tableNumber"),
+            tableNumber: tableNumber,
             userId: currentUser._id
         })
 
-        if (!localStorage.getItem('bookTable')) {
-            await swal({
-                icon: 'error',
-                title: "Error",
-                text: response.data.message,
-                button: "Ok!"
-            })
-        }
+        console.log(response.data.data);
 
-        if (localStorage.getItem('bookTable')) {
-            if (response.data.success) {
-                await swal("Table Booked", response.data.message, "success")
-                localStorage.setItem("bookTable")
-                window.location.href = "/"
-            }
+        if (response.data.data.booked) {
+            await swal("Table Booked Successfully", response.data.message, "success")
+            localStorage.setItem("bookTable", JSON.stringify.apply(response.data.data))
+        }
+        else {
+            await swal("Error", response.data.message, "error")
         }
     }
 
+    async function unbookTable(tableNumber) {
+        console.log("Unbooked Table");
+        const response = await axios.post('/unbookTable', { tableNumber: tableNumber })
+
+        console.log(response.data.data);
+        localStorage.removeItem("bookedTable")
+
+        await swal({
+            icon: 'success',
+            title: "success",
+            text: response.data.message,
+        })
+    }
+
+
     return (
-        <div>
-            <div className='tables row'>
+        <div className='tables row'>
 
-                <Navbar />
+            <Navbar />
 
-                <p className='avl-table'>Available Tables</p>
+            <p className='avl-table'>Available Tables</p>
 
+            {
+              availableTables &&
+                availableTables?.Map((availableTables) => {
+                    return (
+                        <div className='col-md-3'>
+                            <p className='table-name'> Table No : {availableTables.tableNumber}
 
-                <div className='col-md-3'>
-                    <p className='table-name'>Table : {availableTables.tableNumber}
-                        <hr />
-                        <img className='table-img' alt='' src='https://media.istockphoto.com/id/1286120728/vector/home-furnishings-table-with-chairs.jpg?s=612x612&w=0&k=20&c=o8yKNC-r0xuhNI-BV_MRdY4d9YsFMBRbBqyR5bromac=' />
-                        <button type='button' className='book-btn'  onClick={bookTable}>BOOK TABLE</button>
-                    </p>
-                    <br />
-                </div>
+                                <img className='table-img' alt='' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD9UkOc07NjjLhJb_bQJyw9XSn9TmprX27qQ&usqp=CAU' />
+                                <button type='button' className='book-btn' onClick={()=>{bookTable(availableTables.tableNumber)}}>BOOK TABLE</button>
+                                <button type='button' className='book-btn' onClick={()=>{unbookTable(availableTables.tableNumber)}}>UNBOOK TABLE</button>
 
-
-
-            </div>
+                            </p>
+                            <br />
+                        </div>
+                    )
+                })  
+            }            
+                 
         </div>
+        
     )
 }
 
