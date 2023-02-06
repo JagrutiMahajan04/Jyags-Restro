@@ -69,3 +69,7 @@
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
 }
+
+.bg-red{
+    background-color: rgb(252, 105, 135);
+}

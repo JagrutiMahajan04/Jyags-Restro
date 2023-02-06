@@ -14,7 +14,6 @@ function Tables() {
     useEffect(() => {
         async function fetchTables() {
             const response = await axios.get("/availableTables")
-            console.log(response.data.data);
             setAvailableTables(response.data.data)
         }
         fetchTables()
@@ -24,39 +23,37 @@ function Tables() {
         loginRequired()
     }, [])
 
-    async function bookTable(tableNumber) {
+    async function bookTable(e) {
         console.log('Table Booked');
-
         const response = await axios.post('/bookTable', {
-            tableNumber: tableNumber,
-            userId: currentUser._id
+            "tableNumber": (e.target.value),
+            "userId": (currentUser._id)
         })
 
-        console.log(response.data.data);
+        //console.log(response.data.data);
 
-        if (response.data.data.booked) {
-            await swal("Table Booked Successfully", response.data.message, "success")
+        if (response.data.success) {
+            await swal({
+                icon: 'success',
+                title: "Booked Table",
+                text: response.data.message,
+                button:"ok"
+            })
             localStorage.setItem("bookTable", JSON.stringify.apply(response.data.data))
+            window.location.reload()
         }
         else {
-            await swal("Error", response.data.message, "error")
+            await swal({
+                icon: "error",
+                title: "Table is already Booked!",
+                text: response.data.message,
+                button:"OK"
+            })
+            window.location.reload()
         }
     }
 
-    async function unbookTable(tableNumber) {
-        console.log("Unbooked Table");
-        const response = await axios.post('/unbookTable', { tableNumber: tableNumber })
-
-        console.log(response.data.data);
-        localStorage.removeItem("bookedTable")
-
-        await swal({
-            icon: 'success',
-            title: "success",
-            text: response.data.message,
-        })
-    }
-
+    
 
     return (
         <div className='tables row'>
@@ -66,25 +63,22 @@ function Tables() {
             <p className='avl-table'>Available Tables</p>
 
             {
-              availableTables &&
-                availableTables?.Map((availableTables) => {
+                availableTables &&
+                availableTables?.map((availableTables) => {
                     return (
-                        <div className='col-md-3'>
-                            <p className='table-name'> Table No : {availableTables.tableNumber}
-
+                        <div className= "col-md-3" >
+                            <p className={`table-name ${availableTables.booked && 'bg-red'}`}> Table No : {availableTables.tableNumber}
                                 <img className='table-img' alt='' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD9UkOc07NjjLhJb_bQJyw9XSn9TmprX27qQ&usqp=CAU' />
-                                <button type='button' className='book-btn' onClick={()=>{bookTable(availableTables.tableNumber)}}>BOOK TABLE</button>
-                                <button type='button' className='book-btn' onClick={()=>{unbookTable(availableTables.tableNumber)}}>UNBOOK TABLE</button>
-
+                                <button type='button' className='book-btn' value={availableTables.tableNumber} onClick={bookTable}>BOOK TABLE</button>
                             </p>
                             <br />
                         </div>
                     )
-                })  
-            }            
-                 
+                })
+            }
+
         </div>
-        
+
     )
 }
 

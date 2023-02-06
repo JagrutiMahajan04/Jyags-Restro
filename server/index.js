@@ -238,7 +238,7 @@ app.post("/unbookTable", async (req, res)=> {
 });
 
 app.get("/availableTables", async (req, res)=> {
-    const availableTables = await Table.find({ booked : false });
+    const availableTables = await Table.find();
 
     res.json({
 
