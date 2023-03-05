@@ -14,17 +14,19 @@ app.use(express.json());
 
 // middlewear for token checking
 app.use((req, res, next) => {
-    console.log("####### Inside Middlewear #######")
-    console.log(req.query);
-    console.log("#########################");
-    next();
+    const {token} = req.query;
+    if(token==="123456"){
+        next();
+    }
+    else{
+        res.json({
+            success:false,
+            message:"Invalid token"
+        })
+    }
   })
 
   app.get("/test/middlewear", (req,res)=>{
-    console.log("####### Inside Request  #######")
-    const {email} = req.query;
-    console.log(email);
-    console.log("#########################");
     res.json({
         success: true,
         message:"API response"
