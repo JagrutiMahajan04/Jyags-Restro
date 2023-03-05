@@ -9,7 +9,27 @@ import Table from "./models/Table.js";
 import Order from "./models/Order.js"
 
 const app = express();
+//middlewear
 app.use(express.json());
+
+// middlewear for token checking
+app.use((req, res, next) => {
+    console.log("####### Inside Middlewear #######")
+    console.log(req.query);
+    console.log("#########################");
+    next();
+  })
+
+  app.get("/test/middlewear", (req,res)=>{
+    console.log("####### Inside Request  #######")
+    const {email} = req.query;
+    console.log(email);
+    console.log("#########################");
+    res.json({
+        success: true,
+        message:"API response"
+    })
+  })
 
 const PORT = process.env.PORT || 5000;
 
