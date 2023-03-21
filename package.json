@@ -1,0 +1,27 @@
+{
+  "name": "jyags-restro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd client && npm start\" \"cd server && npm start\"",
+    "build": "cd client && npm run build",
+    "client": "cd client && npm start",
+    "server": "cd server && npm start",
+    "start": "npm run build && npm run server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JagrutiMahajan04/Jyags-Restro.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JagrutiMahajan04/Jyags-Restro/issues"
+  },
+  "homepage": "https://github.com/JagrutiMahajan04/Jyags-Restro#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

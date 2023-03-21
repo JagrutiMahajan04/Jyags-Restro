@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from 'dotenv';
 dotenv.config();
+import path from 'path';
+const _dirname = path.resolve();
 
 import User from "./models/User.js";
 import FoodItem from "./models/FoodItem.js";
@@ -325,8 +327,14 @@ app.get("/ordersByUserId", async(req, res)=>{
     })
 })
 
+// send request to frontend
 
 //api routes ends here
+app.use(express.static(path.join(_dirname, '..', 'client','build')));
+
+app.get('*', (req, res)=> {
+    res.sendFile(path.join(_dirname, '..', 'client', 'build', 'index.html'))
+});
 
 app.listen(5000, ()=>{
     console.log(`Server is ruuning on port ${PORT}`);
