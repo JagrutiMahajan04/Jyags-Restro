@@ -27,7 +27,7 @@ function Signup() {
             password: password,
             role: role
         })
-        console.log(response.data)
+        //console.log(response.data)
         if (response.data.success) {
            await swal({
                 title: "Success",

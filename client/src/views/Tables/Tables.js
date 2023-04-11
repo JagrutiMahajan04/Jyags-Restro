@@ -24,7 +24,7 @@ function Tables() {
     }, [])
 
     async function bookTable(e) {
-        console.log('Table Booked');
+        //console.log('Table Booked');
         const response = await axios.post('/bookTable', {
             "tableNumber": (e.target.value),
             "userId": (currentUser._id)

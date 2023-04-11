@@ -15,13 +15,13 @@ function Home() {
 
     async function fetchAllItems() {
         const response = await axios.get('/allfoodItems')
-        console.log(response.data.data)
+        //console.log(response.data.data)
         setAllFoodItems(response.data.data)
     }
 
     async function fetchedSpecificItems() {
         const response = await axios.get(`/foodItems?title=${searchText}`)
-        console.log(response.data.data)
+        //console.log(response.data.data)
         setAllFoodItems(response.data.data)
 
     }

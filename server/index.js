@@ -39,7 +39,7 @@ const PORT = process.env.PORT || 5000;
 
 
 mongoose.connect(process.env.NEWMONGODB_URL, ()=>{
-   console.log('Connected to MongoDB');
+   //console.log('Connected to MongoDB');
 })
 
 //api routes starts here
@@ -337,5 +337,5 @@ app.get('*', (req, res)=> {
 });
 
 app.listen(5000, ()=>{
-    console.log(`Server is ruuning on port ${PORT}`);
+    //console.log(`Server is ruuning on port ${PORT}`);
 })
